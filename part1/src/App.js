@@ -1,22 +1,35 @@
-import './App.css';
+import "./App.css";
 
-const Mensaje = () => {
-  return <h1>Hola Mundo</h1>
-}
+const Titulo = (props) => {
+  return <h1>{props.course}</h1>;
+};
 
-const Descricion = () => {
-  return <p>Este es la app del curso bootcamp fullstack</p>
-}
+const Descripcion = (props) => {
+  return (
+    <p>
+      {props.parts}
+      <span>{props.exercises}</span>
+    </p>
+  );
+};
 
 const App = () => {
+  const exercises1 = 10;
+  const exercises2 = 7;
+  const exercises3 = 14;
+
   return (
     <div className="App">
-      <Mensaje/>
-      <Mensaje/>
-      <Mensaje/>
-      <Descricion/>
+      <Titulo course="Half Stack application development from component " />
+      <Descripcion parts="Fundamentals of React " exercises={exercises1} />
+      <Descripcion parts="Using props to pass data " exercises={exercises2} />
+      <Descripcion parts="State of a component " exercises={exercises3} />
+      <Descripcion
+        parts="Number of exercises "
+        exercises={exercises1 + exercises2 + exercises3}
+      />
     </div>
   );
-}
+};
 
 export default App;
