@@ -1,0 +1,1 @@
+export const Note = ({ note }) => <p>{note.name} {note.phone}</p>
