@@ -4,7 +4,7 @@ import { Note } from "./components/Note";
 import { FormNote } from "./components/FormNote";
 
 import { useState, useEffect } from "react";
-import { getPosts } from "./services/notes";
+import { getPosts, postData } from "./services/notes";
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -29,11 +29,13 @@ const App = () => {
   const handlerSubmitNotes = (e) => {
     e.preventDefault();
     const noteObject = {
-      content: newNotes,
-      date: new Date().toISOString(),
-      important: Math.random() < 0.5,
+      title: newNotes,
+      body: newNotes,
       id: notes.length + 1,
+      userId: 1
     }
+
+    postData(noteObject).then((resp) => console.log("succesfuly", resp))
   
     setNotes(notes.concat(noteObject))
     setNewNotes('')
