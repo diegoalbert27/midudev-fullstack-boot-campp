@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'https://pure-wildwood-06271.herokuapp.com/api/notes'
+const baseUrl = '/api/notes'
 
 const getPosts = () => {
     return axios.get(baseUrl)
@@ -20,4 +20,13 @@ const postData = (newObject) => {
         .catch(err => console.error(err))
 }
 
-export default { getPosts, postData }
+const updateData = (id, newObject) => {
+    return axios.put(`${baseUrl}/${id}`, newObject)
+        .then(response => {
+            const { data } = response
+            return data
+        })
+        .catch(err => console.error(err))
+}
+
+export default { getPosts, postData, updateData }
