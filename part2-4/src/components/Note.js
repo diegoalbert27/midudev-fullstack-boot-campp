@@ -1,6 +1,14 @@
-export const Note = ({ note }) => 
+export const Note = ({ note, toggleImportance }) => {
+    const label = note.important ? "Do make no important?" : "Do make important?"
+
+  return (
     <li>
-        <h3>{note.id}. {note.content}</h3>
-        <p>{note.date}</p>
-        <p>{note.number}</p>
+      {note.id}. {note.content}
+      <p>{note.date}</p>
+      <p>{note.number}</p>
+      <button onClick={toggleImportance}>
+        {label}
+      </button>
     </li>
+  );
+};

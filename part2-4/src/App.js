@@ -43,6 +43,19 @@ const App = () => {
     setNewNotes('')
   }
 
+  const toggleImportanceOf = (id) => {
+    const note = notes.find(n => n.id === id)
+    const changedNote = {...note, important: !note.important}
+
+    setLoad(true)
+    
+    noteService.updateData(id, changedNote)
+      .then(returnedNote => {
+        setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+        setLoad(false)
+      })
+  } 
+
   const handlerChangeNotes = (e) => setNewNotes(e.target.value)
 
   const notesToShow = showAll
@@ -61,7 +74,7 @@ const App = () => {
 
       <ul>
         {notesToShow.map(note => 
-          <Note key={note.id} note={note} />          
+          <Note key={note.id} note={note} toggleImportance={() => toggleImportanceOf(note.id)} />          
         )}
       </ul>
 
