@@ -15,6 +15,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://pure-wildwood-06271.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",
