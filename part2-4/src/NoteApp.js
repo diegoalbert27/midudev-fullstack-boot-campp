@@ -13,7 +13,7 @@ const NoteApp = () => {
   const [load, setLoad] = useState(true)
   const [showAll, setShowAll] = useState(true)
 
-  useEffect(() => {
+  const getData = () => {
     console.log('effect')
     const dataPosts = noteService.getPosts()
     
@@ -24,7 +24,9 @@ const NoteApp = () => {
     }
 
     dataPosts.then(handlerEvent)
-  }, [])
+  }
+
+  useEffect(getData, [])
 
   console.log('render', notes.length, 'notes')
 
@@ -36,7 +38,10 @@ const NoteApp = () => {
       important: Math.random() < 0.5,
     }
 
-    noteService.postData(noteObject).then((resp) => console.log("succesfuly", resp))
+    noteService.postData(noteObject).then((resp) => {
+      console.log("succesfuly", resp)
+      getData()
+    })
   
     setNewNotes('')
   }
@@ -75,7 +80,6 @@ const NoteApp = () => {
           <Note key={note.id} note={note} toggleImportance={() => toggleImportanceOf(note.id)} />          
         )}
       </ul>
-
     </div>
   )
 };
